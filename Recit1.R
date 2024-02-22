@@ -100,6 +100,24 @@ for (i in 1:m_size) {
 
 m2
 
+#Currency Function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

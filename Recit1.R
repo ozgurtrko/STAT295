@@ -102,6 +102,94 @@ m2
 
 #Currency Function
 
+currency_convertor <- function(TL) {
+  currency_vector <- c(TL = 1, USD = 0.033, CAD = 0.044,
+                       EURO = 0.030, CHF = 0.029)
+  result_matrix <- matrix(currency_vector*TL,
+                          dimnames = list(c(names(currency_vector)),"Amount"))
+  return(result_matrix)
+}
+currency_convertor(10000)
+
+#Mortgage Payment Function
+
+calculate <- function(principle, interest_rate, number_of_payments) {
+  monthly_interest_rate <- interest_rate / 12 / 100
+  loan_term_months <- number_of_payments * 12
+  
+  monthly_payment <- principle * (monthly_interest_rate * (1 + monthly_interest_rate)
+                                  ^number_of_payments)/((1+monthly_interest_rate) ^number_of_payments-1)
+  return(monthly_payment)
+}
+
+principle <- 200000
+interest_rate <- 4.5
+number_of_payments <- 30
+
+monthly_payment <- calculate(principle, interest_rate, number_of_payments)
+print(monthly_payment)
+
+data <- read.csv("https://users.ssc.wisc.edu/~hemken/Rworkshops/read/classm.csv")
+data
+
+str(data)
+head(data,4)
+tail(data,2)
+
+sum(is.na(data))
+
+no_na <- function(fill_column){
+  mean_val <- mean(fill_column, na.rm = TRUE)
+  fill_column[is.na(fill_column)] <- mean_val
+  return(fill_column)
+}
+data_fill <- as.data.frame(lapply(data,no_na))
+data1 <- na.omit(data)
+data1
+
+
+
+
+
+install.packages("babynames")
+library(babynames)
+dim(babynames)
+options(scipen = 999)
+
+summary(babynames)
+colnames(babynames) <- c("Year","Sex","Name","Count","Proportion")
+
+?aggregate
+grouped <- aggregate(Count ~ Name + Sex, data = babynames, FUN = sum)
+grouped
+
+?sort
+sort(grouped)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
